@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Page Two</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="home">
+
+  <div class="bar bar-header bar-energized">
+    <h1 class="title">Apple</h1>
+  </div>
+  <br>
+  <br>
+  <br>
+  <button ion-button (click)="takePicture()">Take a Picture!</button>
+
+  <ion-card>
+    <ion-card-content>
+      Hello World, this is my camera app
+
+      <button (click)="takePicture()">Take a Picture</button>
+
+      Latest Picture:
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
