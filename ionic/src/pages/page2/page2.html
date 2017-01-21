@@ -3,28 +3,31 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Page Two</ion-title>
+    <ion-title>Normal Game</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="home">
+  <h2> Your word is ...</h2>
 
-  <div class="bar bar-header bar-energized">
-    <h1 class="title">Apple</h1>
+
+
+  <div class="bar bar-balanced">
+    <h1 class="title">{{challenge}}</h1>
   </div>
+
   <br>
   <br>
   <br>
-  <button ion-button (click)="takePicture()">Take a Picture!</button>
 
   <ion-card>
     <ion-card-content>
-      Hello World, this is my camera app
+      <p>Take a picture of a {{challenge}} and score points!</p>
 
-      <button (click)="takePicture()">Take a Picture</button>
+      <button ion-button (click)="takePicture()">Take a Picture</button>
 
-      Latest Picture:
       <img [src]="base64Image" *ngIf="base64Image" />
+
     </ion-card-content>
   </ion-card>
 
