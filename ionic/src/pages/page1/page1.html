@@ -3,16 +3,15 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Page One</ion-title>
+    <ion-title>Play</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
+      Click play to be given a random word. Take a picture of the object to score points!
   </p>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <button ion-button (click)="startGame()">Play!</button>
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
+import { Page2 } from '../page2/page2';
 
 @Component({
   selector: 'page-page1',
@@ -9,7 +10,11 @@ import { NavController } from 'ionic-angular';
 export class Page1 {
 
   constructor(public navCtrl: NavController) {
-    
+
+  }
+
+  startGame() {
+    this.navCtrl.push(Page2);
   }
 
 }
