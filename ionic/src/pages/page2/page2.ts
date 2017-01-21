@@ -34,7 +34,7 @@ export class Page2 {
       targetHeight: 1000
     }).then((imageData) => {
       // imageData is a base64 encoded string
-      this.base64Image = "" + imageData;
+      this.base64Image = imageData;
     }, (err) => {
       console.log(err);
     });
@@ -43,7 +43,7 @@ export class Page2 {
   public loadChallenge() {
 
     this.challengeService.load()
-      .then (data=> {
+      .then(data => {
         this.challenge = data;
 
       })
