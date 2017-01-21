@@ -13,7 +13,7 @@ mongoose.Promise = require('bluebird');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
-const challenge = require('./routes/challenge')
+const challenge = require('./routes/challenge.route')
 const imageRouter = require('./routes/image.route');
 
 mongoose.connect(config.db, err => {

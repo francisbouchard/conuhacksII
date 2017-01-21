@@ -8,14 +8,12 @@ var Clarifai = require('clarifai');
         '4tBoy0G7XXtITFqHaxiETb-O-XDLicVbaNo5Bz0r'
       );
 
-
-app.models.predict(Clarifai.COLOR_MODEL, "https://staticdelivery.nexusmods.com/mods/110/images/74627-0-1459502036.jpg")
-    .then(function(response) {
-            console.log(JSON.stringify(response))
-            // do something with response
-        },
-        function(err) {
-        console.log(err)
-      // there was an error
-    }
-  );
+module.exports = function(url) {
+    return app.models.predict(Clarifai.GENERAL_MODEL, url)
+        .then(result => {
+            return result
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}

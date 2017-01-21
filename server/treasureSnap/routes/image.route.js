@@ -3,7 +3,23 @@
 const router = require('express').Router();
 const ImageModel = require('../models/image.model');
 const multer = require('multer');
-const upload = multer({dest: __dirname + '/../public/images'});
+const clarifai = require("../../clarifai/clarifai");
+const config = require("../config/config");
+
+
+const storage = multer.diskStorage({
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '.' + file.mimetype.split('/')[1]);
+    },
+    destination: function(req, file, cb) {
+        cb(null, __dirname + '/../public/images');
+    }
+});
+
+const upload = multer({
+    dest: __dirname + '/../public/images',
+    storage: storage
+});
 
 router.route('/')
     .get(function(req, res, next) {
@@ -19,7 +35,11 @@ router.route('/')
 
         return image.save()
             .then(img => {
-                return res.send(img.filename)
+                return clarifai(`http://usapears.org/wp-content/uploads/2009/11/concorde-pear.jpg`)
+                    .then(result => {
+                        console.log(result);
+                        return res.send(result);
+                    })
             })
             .catch(next);
     });
