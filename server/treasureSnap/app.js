@@ -13,6 +13,7 @@ mongoose.Promise = require('bluebird');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const challenge = require('./routes/challenge')
 const imageRouter = require('./routes/image.route');
 
 mongoose.connect(config.db, err => {
@@ -25,6 +26,7 @@ mongoose.connect(config.db, err => {
 
 const app = express();
 
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -40,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/challenge', challenge)
 app.use('/pictures', imageRouter);
 
 

@@ -3,3 +3,5 @@ server/treasureSnap/node_modules/*
 server/.gitignore
 node_modules
 node_modules/*
+.idea/
+.idea/*
