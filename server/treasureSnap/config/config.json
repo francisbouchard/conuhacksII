@@ -2,5 +2,9 @@
   "local": {
     "db" :"mongodb://localhost/treasuresnap",
     "url": "http://localhost:3000"
+  },
+  "dev": {
+    "db" :"mongodb://david:davidissocool1@ds035766.mlab.com:35766/projectpegasus",
+    "url": "http://localhost:3000"
   }
 }
