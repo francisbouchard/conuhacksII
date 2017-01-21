@@ -1,32 +1,32 @@
 'use strict';
 
 const router = require('express').Router();
-const ImageModel = require('../models/image.model');
+const Base64Model = require('../models/base64.model');
+
 const multer = require('multer');
 const clarifai = require("../../clarifai/clarifai");
-const config = require("../config/config");
-
-
-const storage = multer.diskStorage({
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + '.' + file.mimetype.split('/')[1]);
-    },
-    destination: function(req, file, cb) {
-        cb(null, __dirname + '/../public/images');
-    }
-});
-
-const upload = multer({
-    dest: __dirname + '/../public/images',
-    storage: storage
-});
 
 router.route('/')
-    .get(function(req, res, next) {
-        return res.render('index', {});
-    })
+    .post(function(req, res, next) {
+        const basestring = req.body.image;
+
+        return Base64Model.create({basestring})
+            .then(doc => {
+                if(doc) {
+                    return res.send(doc);
+                } else {
+                    return res.sendStatus(400)
+                }
+            })
+    });
+
+module.exports = router;
+
+
+/*
     .post(upload.single('image'), function(req, res, next){
 
+        const imageFile = decode(req.body.image);
         const image = new ImageModel();
         image.filename = req.file.filename;
         image.originalname = req.file.originalname;
@@ -44,4 +44,25 @@ router.route('/')
             .catch(next);
     });
 
-module.exports = router;
+
+
+
+
+/*
+ const {encode, decode} = require('node-base64-image');
+
+
+ const storage = multer.diskStorage({
+ filename: function(req, file, cb) {
+ cb(null, Date.now() + '.' + file.mimetype.split('/')[1]);
+ },
+ destination: function(req, file, cb) {
+ cb(null, __dirname + '/../public/images');
+ }
+ });
+
+ const upload = multer({
+ dest: __dirname + '/../public/images',
+ storage: storage
+ });
+ */
