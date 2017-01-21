@@ -1,5 +1,6 @@
 {
   "local": {
-    "db" :"mongodb://localhost/treasuresnap"
+    "db" :"mongodb://localhost/treasuresnap",
+    "url": "http://localhost:3000"
   }
 }
