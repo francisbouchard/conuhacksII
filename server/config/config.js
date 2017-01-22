@@ -1,6 +1,6 @@
 'use strict';
 
 const config = require('./config.json');
-const env = process.env.NODE_ENV || 'local';
+const env =  'production';
 
 module.exports = config[env];

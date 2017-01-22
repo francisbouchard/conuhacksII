@@ -1,23 +1,51 @@
 'use strict';
 
 const router = require('express').Router();
-const Base64Model = require('../models/base64.model');
 
-const multer = require('multer');
-const clarifai = require("../../clarifai/clarifai");
+const Base64Model = require('../models/base64.model');
+const clarifai = require("../clarifai/clarifai");
 
 router.route('/')
     .post(function(req, res, next) {
         const basestring = req.body.image;
 
         return Base64Model.create({basestring})
-            .then(doc => {
+            .then(function(doc) {
                 if(doc) {
                     return res.send(doc);
                 } else {
                     return res.sendStatus(400)
                 }
             })
+    });
+
+router.route('/game')
+    .post(function(req, res, next) {
+
+        const base64 = req.body.image;
+        const word = req.body.challenge;
+
+        return clarifai(base64)
+            .then(result => {
+                const concepts = result.outputs[0].data.concepts.map(c => ({name: c.name, value: c.value}));
+                const conceptMatch = concepts.find(c => c.name == word);
+                const correctness = conceptMatch ? conceptMatch.value : 0;
+                
+                let points = Math.floor(correctness * 100) - 80;
+                points = (points < 0) ? '0/20' : `${points}/20`;
+                
+
+                let message;
+                if(points) {
+                    message = `Congratulations, you recieve: ${points} points`;
+                } else {
+                    message = `Sorry you failed and got no points`;
+                }
+
+                return res.send({points: points, message: message});
+
+            })
+            .catch(next);
     });
 
 module.exports = router;

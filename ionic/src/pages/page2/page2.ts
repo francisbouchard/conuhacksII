@@ -71,5 +71,4 @@ export class Page2 {
     alert.present();
   }
 
-
 }
