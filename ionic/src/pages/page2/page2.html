@@ -8,12 +8,10 @@
 </ion-header>
 
 <ion-content class="home">
-  <h2> Your word is ...</h2>
+  <h2 style="text-align: center; padding-top: 10%"> Your word is ...</h2>
 
-
-
-  <div class="bar bar-calm">
-    <h1 class="title">{{challenge}}</h1>
+  <div class="bar bar-balanced">
+    <h1 class="title" style="font-size: 30px">{{challenge}}</h1>
   </div>
 
   <br>
@@ -21,7 +19,7 @@
   <br>
 
   <ion-card>
-    <ion-card-content>
+    <ion-card-content style="padding-top: 5%">
       <p>Take a picture of a {{challenge}} and score points!</p>
 
       <button ion-button (click)="takePicture()">Take a Picture</button>

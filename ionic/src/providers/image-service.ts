@@ -18,10 +18,6 @@ export class ImageService {
   }
 
   public post(imageString, challenge) {
-    if (this.data) {
-      // already loaded data
-      return Promise.resolve(this.data);
-    }
 
     let body = {image:imageString, challenge: challenge};
     let headers = new Headers({ 'Content-Type': 'application/json' });
